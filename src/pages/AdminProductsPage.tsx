@@ -5,15 +5,16 @@ import type { Producto } from "../types/Producto";
 
 export function AdminProductsPage() {
   const { productos, actualizarProducto } = useStore();
+  const categorias = [...new Set(productos.map((producto) => producto.categoria))];
   const [productoSeleccionado, setProductoSeleccionado] = useState(
-    productos[0]?.id ?? "",
+    productos[0]?.categoria ?? "",
   );
   const [mensaje, setMensaje] = useState("");
   const [tipoMensaje, setTipoMensaje] = useState<"danger" | "success">(
     "success",
   );
   const productoActual = productos.find(
-    (producto) => producto.id === productoSeleccionado,
+    (producto) => producto.categoria === productoSeleccionado,
   );
 
   const guardarDatosProducto = (evento: FormEvent<HTMLFormElement>) => {
@@ -46,7 +47,7 @@ export function AdminProductsPage() {
         <h2 className="h4 fw-bold mb-3">Administración de productos</h2>
         <Mensaje texto={mensaje} tipo={tipoMensaje} />
         <label className="form-label" htmlFor="productoSeleccionado">
-          Producto
+          Categoría
         </label>
         <select
           className="form-select mb-4"
@@ -54,9 +55,9 @@ export function AdminProductsPage() {
           value={productoSeleccionado}
           onChange={(evento) => setProductoSeleccionado(evento.target.value)}
         >
-          {productos.map((producto) => (
-            <option key={producto.id} value={producto.id}>
-              {producto.id} · {producto.nombre}
+          {categorias.map((categoria) => (
+            <option key={categoria} value={categoria}>
+              {categoria}
             </option>
           ))}
         </select>
@@ -65,7 +66,7 @@ export function AdminProductsPage() {
             <div className="row g-3">
               {(
                 [
-                  ["categoria", "Categoría", productoActual.categoria],
+                  ["id","Código",productoActual.id],
                   ["nombre", "Nombre", productoActual.nombre],
                   ["marca", "Marca", productoActual.marca],
                   ["modelo", "Modelo", productoActual.modelo],

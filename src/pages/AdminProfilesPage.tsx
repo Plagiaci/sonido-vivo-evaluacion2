@@ -137,9 +137,9 @@ export function AdminProfilesPage() {
         <h2 className="h4 fw-bold mb-3">Administración de perfiles</h2>
         <Mensaje texto={mensaje} tipo={tipoMensaje} />
         <h3 className="h5 fw-bold mb-3">Agregar vendedor</h3>
-        <p className="text-secondary">
+        {/* <p className="text-secondary">
           Los clientes pueden crear sus propias cuentas desde «Registrarse».
-        </p>
+        </p> */}
         <form onSubmit={agregarVendedor} className="mb-5">
           <div className="row g-3">
             {(
@@ -194,7 +194,7 @@ export function AdminProfilesPage() {
                 ))}
               </select>
             </div>
-            <div className="col-md-6">
+            <div className="col-md-6 offset-md-3">
               <label className="form-label" htmlFor="usuario-genero">
                 Género
               </label>
@@ -218,9 +218,11 @@ export function AdminProfilesPage() {
               </select>
             </div>
           </div>
-          <button className="btn btn-primary mt-4" type="submit">
-            Agregar vendedor
-          </button>
+          <div className="d-flex justify-content-center">
+            <button className="btn btn-primary mt-4" type="submit">
+              Agregar vendedor
+            </button>
+          </div>
         </form>
         <h3 className="h5 fw-bold mb-3">Perfiles registrados</h3>
         <div className="table-responsive">

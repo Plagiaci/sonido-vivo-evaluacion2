@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Mensaje } from "../../components/PageHelpers";
 import { useStore } from "../../context/StoreContext";
 import { formatearPrecio } from "../../utils/formatoPrecio";
@@ -11,7 +10,6 @@ export function Carrito() {
   const [tipoMensaje, setTipoMensaje] = useState<"danger" | "success">(
     "success",
   );
-  const navigate = useNavigate();
   const total = carrito.reduce(
     (suma, item) => suma + item.precio * item.cantidad,
     0,
@@ -24,9 +22,8 @@ export function Carrito() {
       setTipoMensaje("danger");
       return;
     }
-    setMensaje("Compra realizada exitosamente. El stock fue actualizado.");
+    setMensaje("Compra realizada exitosamente.");
     setTipoMensaje("success");
-    window.setTimeout(() => navigate("/"), 1800);
   };
 
   return (
