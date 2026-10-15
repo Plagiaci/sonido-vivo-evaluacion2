@@ -99,6 +99,8 @@ export function Login() {
                 Administrador: admin@sonidovivo.cl / Admin123!
                 <br />
                 Vendedor: vendedor@sonidovivo.cl / Vendedor123!
+                <br />
+                Cliente: cliente@sonidovivo.cl / Cliente123!
               </div>
             </div>
           </section>
@@ -153,7 +155,7 @@ export function Registro() {
       [Boolean(fechaNacimiento) && nacimiento > hoy, "La fecha no puede ser posterior a hoy."],
       [Boolean(fechaNacimiento) && nacimiento <= hoy && edad < 14, "Debe tener al menos 14 años."],
       [!correo, "El correo es obligatorio."],
-      [Boolean(correo) && !correo.endsWith("@duoc.cl"), "El correo debe pertenecer al dominio duoc.cl."],
+      [Boolean(correo) && !correo.includes("@"), "El correo debe tener un formato válido"],
       [usuarios.some((usuario) => usuario.correo === correo), "Ya existe una cuenta con ese correo."],
       [!password, "La contraseña es obligatoria."],
       [Boolean(password) && password.length < 8, "La contraseña debe tener mínimo 8 caracteres."],

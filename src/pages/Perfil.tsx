@@ -3,9 +3,7 @@ import { useStore } from "../context/StoreContext";
 
 export function Perfil() {
   const { usuarioActual } = useStore();
-  const [nombre, setNombre] = useState(
-  usuarioActual?.nombre ?? ""
-);
+  const [nombre, setNombre] = useState(usuarioActual?.nombre ?? "");
 
   if (!usuarioActual) {
     return (
@@ -17,27 +15,21 @@ export function Perfil() {
 
   return (
     <main className="container py-5">
-
       <h1>Mi perfil</h1>
 
       <div className="mb-3">
-  <label
-    htmlFor="nombre"
-    className="form-label fw-bold"
-  >
-    Nombre
-  </label>
+        <label htmlFor="nombre" className="form-label fw-bold">
+          Nombre
+        </label>
 
-  <input
-    id="nombre"
-    type="text"
-    className="form-control"
-    value={nombre}
-    onChange={(event) =>
-      setNombre(event.target.value)
-    }
-  />
-</div>
+        <input
+          id="nombre"
+          type="text"
+          className="form-control"
+          value={nombre}
+          onChange={(event) => setNombre(event.target.value)}
+        />
+      </div>
       <p>
         <strong>Apellido:</strong> {usuarioActual.apellido}
       </p>
@@ -57,7 +49,6 @@ export function Perfil() {
       <p>
         <strong>Rol:</strong> {usuarioActual.rol}
       </p>
-
     </main>
   );
 }

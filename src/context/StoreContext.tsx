@@ -105,6 +105,20 @@ function cargarUsuarios(): Usuario[] {
       bloqueado: false,
       rol: "vendedor",
     },
+    {
+      id: "usuario-cliente-demo",
+      nombre: "Cliente",
+      apellido: "Demo",
+      fechaNacimiento: "1990-01-01",
+      correo: "cliente@sonidovivo.cl",
+      password: "Cliente123!",
+      direccion: "Av. Sonido Vivo 123",
+      region: "Valparaíso",
+      genero: "Prefiero no indicar",
+      intentosFallidos: 0,
+      bloqueado: false,
+      rol: "cliente",
+    },
   ];
   const guardados = leerLocalStorage<Partial<Usuario>[]>(CLAVE_USUARIOS, []);
   const normalizados: Usuario[] = guardados.map((usuario) => ({
