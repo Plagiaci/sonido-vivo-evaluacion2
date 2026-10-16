@@ -26,7 +26,6 @@ export function Carrito() {
     }
     setMensaje("Compra realizada exitosamente. El stock fue actualizado.");
     setTipoMensaje("success");
-    window.setTimeout(() => navigate("/"), 1800);
   };
 
   return (

@@ -15,7 +15,8 @@ import {
   RutaCliente,
   RutaPersonal,
 } from "./pages/ManagementPages";
-import { Login, Registro } from "./pages/AccountPages";
+import { Login } from "./pages/LoginPage";
+import { Registro } from "./pages/RegistroPage";
 
 function Aplicacion() {
   return (

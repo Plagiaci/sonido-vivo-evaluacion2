@@ -1,5 +1,5 @@
 import { AdminProductsPage } from "./AdminProductsPage";
-import { AdminProfilesPage } from "./AdminProfilesPage";
+import { AdminProfilesPage } from "../admin/AdminProfilesPage";
 
 export function AdminPage() {
   return (

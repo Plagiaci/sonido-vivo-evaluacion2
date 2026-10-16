@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { Navigate } from "react-router-dom";
 import { useStore } from "../context/StoreContext";
-import { AdminPage } from "./AdminPage";
+import { AdminPage } from "./admin/AdminPage";
 import { VendedorPage } from "./VendedorPage";
 
 export function RutaCliente({ children }: { children: ReactNode }) {

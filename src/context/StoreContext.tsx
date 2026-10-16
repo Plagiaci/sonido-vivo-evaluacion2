@@ -52,6 +52,7 @@ interface StoreContextValue {
   guardarUsuarios: (usuarios: Usuario[]) => void;
   actualizarStock: (idProducto: string, stock: number) => boolean;
   actualizarProducto: (producto: Producto) => boolean;
+  crearProducto: (producto: Producto) => boolean;
 }
 
 const StoreContext = createContext<StoreContextValue | null>(null);
@@ -62,17 +63,21 @@ function leerLocalStorage<T>(clave: string, valorInicial: T): T {
 }
 
 function cargarProductos(): Producto[] {
-  const guardados = leerLocalStorage<Producto[]>(CLAVE_PRODUCTOS, []);
-  const porId = new Map(guardados.map((producto) => [producto.id, producto]));
-  const actualizados = catalogoInicial.map((producto) => ({
-    ...producto,
-    stock: Number(porId.get(producto.id)?.stock ?? producto.stock),
-  }));
+  const guardados = leerLocalStorage<Producto[]>(
+    CLAVE_PRODUCTOS,
+    [],
+  );
 
-  if (JSON.stringify(guardados) !== JSON.stringify(actualizados)) {
-    localStorage.setItem(CLAVE_PRODUCTOS, JSON.stringify(actualizados));
+  if (guardados.length > 0) {
+    return guardados;
   }
-  return actualizados;
+
+  localStorage.setItem(
+    CLAVE_PRODUCTOS,
+    JSON.stringify(catalogoInicial),
+  );
+
+  return catalogoInicial;
 }
 
 function cargarUsuarios(): Usuario[] {
@@ -264,6 +269,59 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
         setProductos(actualizados);
         return true;
       },
+
+      crearProducto: (nuevoProducto) => {
+  if (usuarioActual?.rol !== "administrador") {
+    return false;
+  }
+
+  if (
+    !nuevoProducto.id.trim() ||
+    !nuevoProducto.categoria.trim() ||
+    !nuevoProducto.nombre.trim() ||
+    !nuevoProducto.marca.trim() ||
+    !nuevoProducto.modelo.trim() ||
+    !nuevoProducto.descripcion.trim()
+  ) {
+    return false;
+  }
+
+  if (
+    !Number.isInteger(nuevoProducto.stock) ||
+    nuevoProducto.stock < 0
+  ) {
+    return false;
+  }
+
+  if (
+    !Number.isFinite(nuevoProducto.precio) ||
+    nuevoProducto.precio < 0
+  ) {
+    return false;
+  }
+
+  const existe = productos.some(
+    (producto) => producto.id === nuevoProducto.id,
+  );
+
+  if (existe) {
+    return false;
+  }
+
+  const actualizados = [
+    ...productos,
+    nuevoProducto,
+  ];
+
+  localStorage.setItem(
+    CLAVE_PRODUCTOS,
+    JSON.stringify(actualizados),
+  );
+
+  setProductos(actualizados);
+
+  return true;
+},
       actualizarProducto: (actualizado) => {
         if (
           usuarioActual?.rol !== "administrador" ||

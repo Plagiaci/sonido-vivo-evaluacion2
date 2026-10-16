@@ -137,9 +137,6 @@ export function AdminProfilesPage() {
         <h2 className="h4 fw-bold mb-3">Administración de perfiles</h2>
         <Mensaje texto={mensaje} tipo={tipoMensaje} />
         <h3 className="h5 fw-bold mb-3">Agregar vendedor</h3>
-        <p className="text-secondary">
-          Los clientes pueden crear sus propias cuentas desde «Registrarse».
-        </p>
         <form onSubmit={agregarVendedor} className="mb-5">
           <div className="row g-3">
             {(
