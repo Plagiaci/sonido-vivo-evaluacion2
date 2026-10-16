@@ -51,9 +51,13 @@ export const Header = () => {
                 key={to}
                 to={to}
                 end={end}
-                className={({ isActive }) =>
-                  `nav-link${isActive ? " active" : ""}`
-                }
+                className={({ isActive }) => {
+                  const esGestionAdmin =
+                    to === "/gestion" && usuarioActual?.rol === "administrador";
+                  return `nav-link${isActive ? " active" : ""}${
+                    esGestionAdmin ? " gestion-admin" : ""
+                  }`;
+                }}
                 onClick={() => setMenuAbierto(false)}
               >
                 {label}
@@ -74,12 +78,12 @@ export const Header = () => {
             {usuarioActual && (
               <>
                 <NavLink
-                 to="/perfil"
+                  to="/perfil"
                   className="nav-link"
                   onClick={() => setMenuAbierto(false)}
-              >
-                 {usuarioActual.nombre} · {usuarioActual.rol}
-                 </NavLink>
+                >
+                  {usuarioActual.nombre} · {usuarioActual.rol}
+                </NavLink>
                 <button
                   className="btn btn-outline-light btn-sm my-1"
                   type="button"

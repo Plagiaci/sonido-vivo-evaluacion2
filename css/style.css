@@ -70,6 +70,22 @@ iframe {
     border-radius: 0.75rem;
 }
 
+.nav-link.gestion-admin {
+    margin: 0.25rem 0.5rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    border-radius: 0.75rem;
+    background-color: #ffc107;
+    color: #212529 !important;
+    font-weight: 600;
+}
+
+.nav-link.gestion-admin:hover,
+.nav-link.gestion-admin:focus-visible {
+    background-color: #ffca2c;
+    color: #212529 !important;
+}
+
 
 .detail-label {
 

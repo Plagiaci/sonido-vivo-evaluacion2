@@ -66,7 +66,6 @@ export function AdminProductsPage() {
             <div className="row g-3">
               {(
                 [
-                  ["id","Código",productoActual.id],
                   ["categoria", "Categoría", productoActual.categoria],
                   ["nombre", "Nombre", productoActual.nombre],
                   ["marca", "Marca", productoActual.marca],
